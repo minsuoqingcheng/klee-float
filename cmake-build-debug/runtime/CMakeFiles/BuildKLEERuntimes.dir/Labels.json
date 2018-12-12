@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/unix-lc/klee-float/cmake-build-debug/runtime/CMakeFiles/BuildKLEERuntimes"
+		},
+		{
+			"file" : "/home/unix-lc/klee-float/cmake-build-debug/runtime/CMakeFiles/BuildKLEERuntimes.rule"
+		},
+		{
+			"file" : "/home/unix-lc/klee-float/cmake-build-debug/runtime/CMakeFiles/BuildKLEERuntimes-complete.rule"
+		},
+		{
+			"file" : "/home/unix-lc/klee-float/cmake-build-debug/runtime/BuildKLEERuntimes-prefix/src/BuildKLEERuntimes-stamp/BuildKLEERuntimes-install.rule"
+		},
+		{
+			"file" : "/home/unix-lc/klee-float/cmake-build-debug/runtime/BuildKLEERuntimes-prefix/src/BuildKLEERuntimes-stamp/BuildKLEERuntimes-mkdir.rule"
+		},
+		{
+			"file" : "/home/unix-lc/klee-float/cmake-build-debug/runtime/BuildKLEERuntimes-prefix/src/BuildKLEERuntimes-stamp/BuildKLEERuntimes-download.rule"
+		},
+		{
+			"file" : "/home/unix-lc/klee-float/cmake-build-debug/runtime/BuildKLEERuntimes-prefix/src/BuildKLEERuntimes-stamp/BuildKLEERuntimes-update.rule"
+		},
+		{
+			"file" : "/home/unix-lc/klee-float/cmake-build-debug/runtime/BuildKLEERuntimes-prefix/src/BuildKLEERuntimes-stamp/BuildKLEERuntimes-patch.rule"
+		},
+		{
+			"file" : "/home/unix-lc/klee-float/cmake-build-debug/runtime/BuildKLEERuntimes-prefix/src/BuildKLEERuntimes-stamp/BuildKLEERuntimes-configure.rule"
+		},
+		{
+			"file" : "/home/unix-lc/klee-float/cmake-build-debug/runtime/BuildKLEERuntimes-prefix/src/BuildKLEERuntimes-stamp/BuildKLEERuntimes-build.rule"
+		},
+		{
+			"file" : "/home/unix-lc/klee-float/cmake-build-debug/runtime/BuildKLEERuntimes-prefix/src/BuildKLEERuntimes-stamp/BuildKLEERuntimes-RuntimeBuild.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"BuildKLEERuntimes"
+		],
+		"name" : "BuildKLEERuntimes"
+	}
+}

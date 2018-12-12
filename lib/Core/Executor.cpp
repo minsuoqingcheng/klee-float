@@ -49,6 +49,7 @@
 #include "klee/util/ExprSMTLIBPrinter.h"
 #include "klee/util/ExprUtil.h"
 #include "klee/util/GetElementPtrTypeIterator.h"
+#include "klee/util/LLVMExprOstream.h"
 
 #if LLVM_VERSION_CODE >= LLVM_VERSION(3, 3)
 #include "llvm/IR/Function.h"
@@ -99,6 +100,7 @@
 #include <algorithm>
 #include <iomanip>
 #include <iosfwd>
+#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <vector>
@@ -113,7 +115,7 @@ using namespace llvm;
 using namespace klee;
 
 
-
+const char *KLEE_OUTPUT_NAME = "klee_output";
 
 
 namespace {
@@ -1857,6 +1859,21 @@ void Executor::executeInstruction(ExecutionState &state, KInstruction *ki) {
         }
       }
 
+        const char *funcName = f->getName().data();
+        const char *targetName = KLEE_OUTPUT_NAME;
+        if (strstr(funcName, targetName) != NULL) {
+            const ConstraintManager myConstraints = state.constraints;
+            LLVMExprOstream::saveConstraints("expression.txt", myConstraints);
+
+            // Get the name of the variable needed symbolic expression
+            std::string value =
+                    specialFunctionHandler->readStringAtAddress(state, arguments[0]);
+            std::cout << value << " = " << std::flush;
+            LLVMExprOstream::printExpr(arguments[1]);
+            std::cout << "\n" << std::endl << std::flush;
+            LLVMExprOstream::saveExpr(value, "expression.txt", arguments[1]);
+        }
+
       executeCall(state, ki, f, arguments);
     } else {
       ref<Expr> v = eval(ki, 0, state).value;
@@ -2995,11 +3012,44 @@ static std::set<std::string> okExternals(okExternalsList,
                                          okExternalsList + 
                                          (sizeof(okExternalsList)/sizeof(okExternalsList[0])));
 
+// long name should be in front of short one, like asin and sin
+const char *methods[] = { "asinh", "acosh", "atanh", "acoth", "asech",
+                          "acosech", "atan", "asin", "acos", "sinh", "cosh", "coth", "tanh",
+                          "sech", "cosech", "sin", "cos", "tan", "cot", "sec", "cosec", "cotan",
+                          "log", "exp", "bound", "pi", "euler", "maximum", "minimum", "fabs", "abs",
+                          "setRwidth", "sqrt", "pow", "limit", "lipschitz", "approx" };
+
+std::vector<const char*> methodNames(methods,methods+37);
+
 void Executor::callExternalFunction(ExecutionState &state,
                                     KInstruction *target,
                                     Function *function,
                                     std::vector< ref<Expr> > &arguments) {
-  // check if specialFunctionHandler wants it
+
+    // check if mathFunctionHandler wants it
+    const char *name = function->getName().data();
+    bool isNeeded = false;
+    std::vector<const char *>::iterator it;
+    for (it = methodNames.begin(); it != methodNames.end(); it++) {
+        //	  std::cout<<"name: "<<name<<std::endl<<std::flush;
+        //	  std::cout<<"it: "<<*it<<std::endl<<std::flush;
+        if (strstr(name, *it) != NULL) {
+            isNeeded = true;
+            name = *it;
+            break;
+        }
+    }
+    if (isNeeded) {
+        //	  ref<Expr> src = eval(target, 0, state).value;
+        //	  LLVMExprOstream::printExpr(src);
+        ref<Expr> result = MethodExpr::create(name, arguments);
+        bindLocal(target, state, result);
+        //	  LLVMExprOstream::printExpr(getDestCell(state, target).value);
+        //	  klee_warning("binding success");
+        return;
+    }
+
+    // check if specialFunctionHandler wants it
   if (specialFunctionHandler->handle(state, function, target, arguments))
     return;
   

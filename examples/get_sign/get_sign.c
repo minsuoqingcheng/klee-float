@@ -2,20 +2,24 @@
  * First KLEE tutorial: testing a small function
  */
 
-#include <klee/klee.h>
+#include "klee/klee.h"
 
-int get_sign(int x) {
-  if (x == 0)
-     return 0;
-  
+float get_sign(float x) {
   if (x < 0)
-     return -1;
+     return -x;
   else 
-     return 1;
-} 
+     return x;
+}
+
+float klee_output(const char *name, float v)
+{
+    return v;
+}
 
 int main() {
-  int a;
+  float a;
   klee_make_symbolic(&a, sizeof(a), "a");
-  return get_sign(a);
+  float res = get_sign(a);
+  klee_output("res", res);
+  return 0;
 } 
