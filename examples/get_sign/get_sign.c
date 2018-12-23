@@ -4,22 +4,25 @@
 
 #include "klee/klee.h"
 
-float get_sign(float x) {
-  if (x < 0)
-     return -x;
-  else 
-     return x;
-}
-
 float klee_output(const char *name, float v)
 {
     return v;
 }
 
+
+float get_sign(float x) {
+  klee_make_symbolic(&x, sizeof(x), "x");
+  float res = 0;
+  if (x < 0)
+     res = -x;
+  else
+     res = x;
+  klee_output("res", res);
+  return res;
+}
+
 int main() {
   float a;
-  klee_make_symbolic(&a, sizeof(a), "a");
-  float res = get_sign(a);
-  klee_output("res", res);
+  get_sign(a);
   return 0;
 } 

@@ -1,3 +1,0 @@
-KLEE: Using Z3 solver backend
-KLEE: Logging all queries in .kquery format to /home/unix-lc/klee-float/examples/get_sign/klee-out-0/all-queries.kquery
-

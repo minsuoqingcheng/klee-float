@@ -3,6 +3,7 @@ KLEE: WARNING: undefined reference to function: _ZN5iRRAM3absEi
 KLEE: WARNING: undefined reference to function: _ZN5iRRAM3cosEi
 KLEE: WARNING: undefined reference to function: _ZN5iRRAM3cotEi
 KLEE: WARNING: undefined reference to function: _ZN5iRRAM3expEi
+KLEE: WARNING: undefined reference to function: _ZN5iRRAM3facEi
 KLEE: WARNING: undefined reference to function: _ZN5iRRAM3logEi
 KLEE: WARNING: undefined reference to function: _ZN5iRRAM3secEi
 KLEE: WARNING: undefined reference to function: _ZN5iRRAM3sinEi
@@ -25,7 +26,9 @@ KLEE: WARNING: undefined reference to function: _ZN5iRRAM5atanhEi
 KLEE: WARNING: undefined reference to function: _ZN5iRRAM5cosecEi
 KLEE: WARNING: undefined reference to function: _ZN5iRRAM5cotanEi
 KLEE: WARNING: undefined reference to function: _ZN5iRRAM5eulerEv
+KLEE: WARNING: undefined reference to function: _ZN5iRRAM5gammaEi
 KLEE: WARNING: undefined reference to function: _ZN5iRRAM5limitEi
+KLEE: WARNING: undefined reference to function: _ZN5iRRAM5powerEii
 KLEE: WARNING: undefined reference to function: _ZN5iRRAM6approxEii
 KLEE: WARNING: undefined reference to function: _ZN5iRRAM6cosechEi
 KLEE: WARNING: undefined reference to function: _ZN5iRRAM7acosechEi
@@ -34,6 +37,3 @@ KLEE: WARNING: undefined reference to function: _ZN5iRRAM7minimumEii
 KLEE: WARNING: undefined reference to function: _ZSt9terminatev
 KLEE: WARNING: undefined reference to function: __cxa_begin_catch
 KLEE: WARNING: undefined reference to function: __gxx_personality_v0
-KLEE: WARNING: undefined reference to function: sprintf
-KLEE: WARNING ONCE: Alignment of memory from call "_Znam" is not modelled. Using alignment of 8.
-KLEE: WARNING ONCE: calling external: sprintf(62365056, 61151760, 0)

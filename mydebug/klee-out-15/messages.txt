@@ -1,1 +1,3 @@
-KLEE: Using STP solver backend
+KLEE: Using Z3 solver backend
+KLEE: Logging all queries in .kquery format to /home/unix-lc/klee-float/mydebug/klee-out-15/all-queries.kquery
+

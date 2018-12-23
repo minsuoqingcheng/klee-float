@@ -1,0 +1,53 @@
+# Query 0 -- Type: Validity, Instructions: 96
+array degree[8] : w32 -> w8 = symbolic
+array i[8] : w32 -> w8 = symbolic
+(query [] (FOLt (ReadLSB w64 0 i)
+                 (ReadLSB w64 0 degree)))
+#   OK -- Elapsed: 3.305399e-02
+#   Validity: 0
+
+# Query 1 -- Type: InitialValues, Instructions: 174
+array degree[8] : w32 -> w8 = symbolic
+array i[8] : w32 -> w8 = symbolic
+array powx[4] : w32 -> w8 = symbolic
+array res[4] : w32 -> w8 = symbolic
+array x[4] : w32 -> w8 = symbolic
+(query [(Eq false
+             (FOLt (ReadLSB w64 0 i)
+                   (ReadLSB w64 0 degree)))]
+        false []
+        [degree
+         i
+         powx
+         res
+         x])
+#   OK -- Elapsed: 2.410412e-04
+#   Solvable: true
+#     degree = [0,0,0,0,0,0,0,0]
+#     i = [0,0,0,0,0,0,0,0]
+#     powx = [0,0,0,0]
+#     res = [0,0,0,0]
+#     x = [0,0,0,0]
+
+# Query 2 -- Type: InitialValues, Instructions: 272
+array degree[8] : w32 -> w8 = symbolic
+array i[8] : w32 -> w8 = symbolic
+array powx[4] : w32 -> w8 = symbolic
+array res[4] : w32 -> w8 = symbolic
+array x[4] : w32 -> w8 = symbolic
+(query [(FOLt (ReadLSB w64 0 i)
+               (ReadLSB w64 0 degree))]
+        false []
+        [degree
+         i
+         powx
+         res
+         x])
+#   OK -- Elapsed: 1.080036e-04
+#   Solvable: true
+#     degree = [0,0,0,0,0,0,0,0]
+#     i = [0,0,0,0,0,0,0,0]
+#     powx = [0,0,0,0]
+#     res = [0,0,0,0]
+#     x = [0,0,0,0]
+

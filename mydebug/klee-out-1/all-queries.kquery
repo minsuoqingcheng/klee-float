@@ -1,26 +1,50 @@
-# Query 0 -- Type: Validity, Instructions: 13
-array a[4] : w32 -> w8 = symbolic
-(query [] (Eq 0
-               (ReadLSB w32 0 a)))
-#   OK -- Elapsed: 6.204903e-02
+# Query 0 -- Type: Validity, Instructions: 17
+array x[4] : w32 -> w8 = symbolic
+(query [] (FOLt (FPExt w64 (ReadLSB w32 0 x))
+                 1.25E+1))
+#   OK -- Elapsed: 7.130003e-02
 #   Validity: 0
 
-# Query 1 -- Type: Validity, Instructions: 19
-array a[4] : w32 -> w8 = symbolic
+# Query 1 -- Type: Validity, Instructions: 25
+array x[4] : w32 -> w8 = symbolic
 (query [(Eq false
-             (Eq 0
-                 N0:(ReadLSB w32 0 a)))]
-        (Slt N0 0))
-#   OK -- Elapsed: 3.648901e-02
+             (FOLt N0:(FPExt w64 (ReadLSB w32 0 x))
+                   1.25E+1))]
+        (FOLt N0 2.05E+1))
+#   OK -- Elapsed: 3.085101e-02
 #   Validity: 0
 
-# Query 2 -- Type: InitialValues, Instructions: 21
-array a[4] : w32 -> w8 = symbolic
-(query [(Eq 0
-             (ReadLSB w32 0 a))]
+# Query 2 -- Type: InitialValues, Instructions: 54
+array x[4] : w32 -> w8 = symbolic
+(query [(Eq false
+             (FOLt N0:(FPExt w64 (ReadLSB w32 0 x))
+                   1.25E+1))
+         (Eq false (FOLt N0 2.05E+1))]
         false []
-        [a])
-#   OK -- Elapsed: 1.800060e-04
+        [x])
+#   OK -- Elapsed: 1.159906e-04
 #   Solvable: true
-#     a = [0,0,0,0]
+#     x = [0,0,0,0]
+
+# Query 3 -- Type: InitialValues, Instructions: 63
+array x[4] : w32 -> w8 = symbolic
+(query [(FOLt (FPExt w64 (ReadLSB w32 0 x))
+               1.25E+1)]
+        false []
+        [x])
+#   OK -- Elapsed: 7.593632e-05
+#   Solvable: true
+#     x = [0,0,0,0]
+
+# Query 4 -- Type: InitialValues, Instructions: 66
+array x[4] : w32 -> w8 = symbolic
+(query [(Eq false
+             (FOLt N0:(FPExt w64 (ReadLSB w32 0 x))
+                   1.25E+1))
+         (FOLt N0 2.05E+1)]
+        false []
+        [x])
+#   OK -- Elapsed: 3.500700e-02
+#   Solvable: true
+#     x = [0,0,0,0]
 

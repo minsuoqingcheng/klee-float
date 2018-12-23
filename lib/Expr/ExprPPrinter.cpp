@@ -68,10 +68,14 @@ private:
 
         // Arithmetic
         kindMap[Expr::Add] = "+";
+        kindMap[Expr::FAdd] = "+";
         kindMap[Expr::Sub] = "-";
+        kindMap[Expr::FSub] = "-";
         kindMap[Expr::Mul] = "*";
+        kindMap[Expr::FMul] = "*";
         kindMap[Expr::UDiv] = "/";
         kindMap[Expr::SDiv] = "/";
+        kindMap[Expr::FDiv] = "/";
         kindMap[Expr::URem] = "%";
         kindMap[Expr::SRem] = "%";
 
@@ -87,15 +91,21 @@ private:
 
         // Compare
         kindMap[Expr::Eq] = "==";
+        kindMap[Expr::FOEq] = "==";
         kindMap[Expr::Ne] = "!=";
         kindMap[Expr::Ult] = "<";
+        kindMap[Expr::FOLt] = "<";
         kindMap[Expr::Ule] = "<=";
+        kindMap[Expr::FOLe] = "<=";
         kindMap[Expr::Ugt] = ">";
         kindMap[Expr::Uge] = ">=";
         kindMap[Expr::Slt] = "<";
         kindMap[Expr::Sle] = "<=";
         kindMap[Expr::Sgt] = ">";
+        kindMap[Expr::FOGt] = ">";
         kindMap[Expr::Sge] = ">=";
+        kindMap[Expr::FOGe] = ">=";
+
         return kindMap;
     }
 
@@ -590,9 +600,9 @@ public:
                 } else {
                     PC << "(";
                     printExpression(be->getKid(0), PC);
-                    //					PC << " " <<
+                    PC << " ";
                     //ExprKindView::getSymbol(be->getKind()) << " ";
-                    PC << ExprKindView::getSymbol(be->getKind());
+                    PC << ExprKindView::getSymbol(be->getKind()) << " ";
                     printExpression(be->getKid(1), PC);
                     PC << ")";
                 }

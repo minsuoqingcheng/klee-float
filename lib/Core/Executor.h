@@ -213,6 +213,8 @@ private:
 
   llvm::Function* getTargetFunction(llvm::Value *calledVal,
                                     ExecutionState &state);
+
+  std::vector<ConstraintManager> STATE_VECTOR;
   
   void executeInstruction(ExecutionState &state, KInstruction *ki);
 

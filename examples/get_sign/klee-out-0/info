@@ -1,3 +1,0 @@
-klee -solver-backend=z3 --use-query-log=all:kquery -write-kqueries get_sign.bc
-PID: 2328
-Started: 2018-10-27 03:23:39

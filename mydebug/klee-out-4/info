@@ -1,14 +1,14 @@
-/home/unix-lc/klee-float/cmake-build-debug/bin/klee analytic.bc
-PID: 9789
-Started: 2018-11-05 05:00:59
+/home/unix-lc/klee-float/cmake-build-debug/bin/klee -solver-backend=z3 --use-query-log=all:kquery -write-kqueries analytic.bc
+PID: 4986
+Started: 2018-12-22 19:05:53
 BEGIN searcher description
 <InterleavedSearcher> containing 2 searchers:
 RandomPathSearcher
 WeightedRandomSearcher::CoveringNew
 </InterleavedSearcher>
 END searcher description
-Finished: 2018-11-05 05:03:55
-Elapsed: 00:02:56
+Finished: 2018-12-22 19:05:53
+Elapsed: 00:00:00
 KLEE: done: explored paths = 1
 KLEE: done: total queries = 0
 KLEE: done: valid queries = 0

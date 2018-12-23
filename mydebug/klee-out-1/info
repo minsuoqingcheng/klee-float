@@ -1,3 +1,21 @@
-/home/unix-lc/klee-float/cmake-build-debug/bin/klee -solver-backend=z3 --use-query-log=all:kquery -write-kqueries get_sign.bc
-PID: 6381
-Started: 2018-11-05 03:01:51
+/home/unix-lc/klee-float/cmake-build-debug/bin/klee -solver-backend=z3 --use-query-log=all:kquery -write-kqueries get_sign3.bc
+PID: 4595
+Started: 2018-12-22 19:02:37
+BEGIN searcher description
+<InterleavedSearcher> containing 2 searchers:
+RandomPathSearcher
+WeightedRandomSearcher::CoveringNew
+</InterleavedSearcher>
+END searcher description
+Finished: 2018-12-22 19:02:37
+Elapsed: 00:00:00
+KLEE: done: explored paths = 3
+KLEE: done: avg. constructs per query = 4
+KLEE: done: total queries = 4
+KLEE: done: valid queries = 0
+KLEE: done: invalid queries = 4
+KLEE: done: query cex = 4
+
+KLEE: done: total instructions = 66
+KLEE: done: completed paths = 3
+KLEE: done: generated tests = 3
