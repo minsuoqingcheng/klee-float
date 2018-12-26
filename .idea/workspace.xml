@@ -2,20 +2,20 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
-      <config projectName="KLEE" targetName="kleeSupport" />
-      <config projectName="KLEE" targetName="kleeBasic" />
-      <config projectName="KLEE" targetName="kleaverSolver" />
       <config projectName="KLEE" targetName="gen-random-bout" />
-      <config projectName="KLEE" targetName="kleeModule" />
-      <config projectName="KLEE" targetName="kleeRuntest" />
+      <config projectName="KLEE" targetName="klee-replay" />
+      <config projectName="KLEE" targetName="BuildKLEERuntimes" />
+      <config projectName="KLEE" targetName="kleaver" />
       <config projectName="KLEE" targetName="doc-doxygen" />
       <config projectName="KLEE" targetName="docs" />
-      <config projectName="KLEE" targetName="BuildKLEERuntimes" />
-      <config projectName="KLEE" targetName="klee-replay" />
+      <config projectName="KLEE" targetName="kleeRuntest" />
+      <config projectName="KLEE" targetName="kleeBasic" />
       <config projectName="KLEE" targetName="kleeCore" />
-      <config projectName="KLEE" targetName="kleaver" />
-      <config projectName="KLEE" targetName="klee" />
       <config projectName="KLEE" targetName="kleaverExpr" />
+      <config projectName="KLEE" targetName="kleeSupport" />
+      <config projectName="KLEE" targetName="klee" />
+      <config projectName="KLEE" targetName="kleaverSolver" />
+      <config projectName="KLEE" targetName="kleeModule" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -24,13 +24,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67dd2fa0-b581-4589-8405-489b58b233b9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/git-data/head-ref" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/git-data/head-ref" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/include/klee/Config/CompileTimeInfo.h" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/include/klee/Config/CompileTimeInfo.h" afterDir="false" />
-    </list>
+    <list default="true" id="67dd2fa0-b581-4589-8405-489b58b233b9" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +51,7 @@
     <session id="1051407969">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="11" />
+          <entry key="project.closed" value="12" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.29" value="1" />
@@ -101,16 +95,16 @@
         <counts>
           <entry key="c" value="329" />
           <entry key="cpp" value="808" />
-          <entry key="gitignore" value="45" />
+          <entry key="gitignore" value="52" />
           <entry key="h" value="380" />
-          <entry key="txt" value="3" />
+          <entry key="txt" value="30" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CMakeLists.txt" value="1" />
           <entry key="ObjectiveC" value="1517" />
-          <entry key="PLAIN_TEXT" value="47" />
+          <entry key="PLAIN_TEXT" value="81" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -126,8 +120,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="31" column="8" lean-forward="true" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
+            <state relative-caret-position="576">
+              <caret line="32" column="6" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -447,12 +441,20 @@
       <workItem from="1545145871927" duration="979000" />
       <workItem from="1545218219907" duration="10014000" />
       <workItem from="1545528610369" duration="13539000" />
-      <workItem from="1545547026686" duration="957000" />
+      <workItem from="1545547026686" duration="1046000" />
     </task>
+    <task id="LOCAL-00001" summary="[develop] modify .gitignore">
+      <created>1545548101410</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1545548101410</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51911000" />
+    <option name="totallyTimeSpent" value="52000000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -478,7 +480,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3294979" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="8" weight="0.4843096" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.5041841" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.5041841" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.39539748" />
       <window_info anchor="bottom" id="CMake" order="12" weight="0.4832636" />
@@ -551,6 +553,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="[develop] modify .gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="[develop] modify .gitignore" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -869,8 +875,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="31" column="8" lean-forward="true" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
+        <state relative-caret-position="576">
+          <caret line="32" column="6" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
         </state>
       </provider>
     </entry>
