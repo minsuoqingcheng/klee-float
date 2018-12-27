@@ -67,7 +67,7 @@ CMake Deprecation Warning at CMakeLists.txt:25 (cmake_policy):
 -- klee-uclibc support enabled
 -- Found klee-uclibc library: "/home/unix-lc/klee-float-env/klee-uclibc/lib/libc.a"
 -- Found klee-uclibc math library: "/home/unix-lc/klee-float-env/klee-uclibc/lib/libm.a"
--- KLEE_GIT_SHA1HASH: 7cdd64506a37df3e5b34d468081b7a3832d202c3
+-- KLEE_GIT_SHA1HASH: a6e3fdc61e4ab7080e1558f7de7bf1f1cd18ea03
 -- Testing is disabled
 -- Unit tests disabled
 -- System tests disabled

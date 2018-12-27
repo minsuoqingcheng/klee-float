@@ -2,20 +2,20 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
+      <config projectName="KLEE" targetName="kleeSupport" />
+      <config projectName="KLEE" targetName="kleeBasic" />
+      <config projectName="KLEE" targetName="kleaverSolver" />
       <config projectName="KLEE" targetName="gen-random-bout" />
-      <config projectName="KLEE" targetName="klee-replay" />
-      <config projectName="KLEE" targetName="BuildKLEERuntimes" />
-      <config projectName="KLEE" targetName="kleaver" />
+      <config projectName="KLEE" targetName="kleeModule" />
+      <config projectName="KLEE" targetName="kleeRuntest" />
       <config projectName="KLEE" targetName="doc-doxygen" />
       <config projectName="KLEE" targetName="docs" />
-      <config projectName="KLEE" targetName="kleeRuntest" />
-      <config projectName="KLEE" targetName="kleeBasic" />
+      <config projectName="KLEE" targetName="BuildKLEERuntimes" />
+      <config projectName="KLEE" targetName="klee-replay" />
       <config projectName="KLEE" targetName="kleeCore" />
-      <config projectName="KLEE" targetName="kleaverExpr" />
-      <config projectName="KLEE" targetName="kleeSupport" />
+      <config projectName="KLEE" targetName="kleaver" />
       <config projectName="KLEE" targetName="klee" />
-      <config projectName="KLEE" targetName="kleaverSolver" />
-      <config projectName="KLEE" targetName="kleeModule" />
+      <config projectName="KLEE" targetName="kleaverExpr" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -24,7 +24,310 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67dd2fa0-b581-4589-8405-489b58b233b9" name="Default Changelist" comment="" />
+    <list default="true" id="67dd2fa0-b581-4589-8405-489b58b233b9" name="Default Changelist" comment="[develop] &#10;test abnormal example, and the result is wrong&#10;add sin\cos\log function test, which need to ignore">
+      <change afterPath="$PROJECT_DIR$/examples/get_sign/ignore_function_test.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/get_sign/loop1_2.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mydebug/expression-ignore_function_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mydebug/expression-loop1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mydebug/expression-loop1_2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mydebug/ignore_function_test.bc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mydebug/loop1_2.bc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/git-data/head-ref" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/git-data/head-ref" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/bin/klee" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/bin/klee" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/include/klee/Config/CompileTimeInfo.h" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/include/klee/Config/CompileTimeInfo.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/lib/Support/CMakeFiles/kleeSupport.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/lib/Support/CMakeFiles/kleeSupport.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/lib/Support/CMakeFiles/kleeSupport.dir/PrintVersion.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/lib/Support/CMakeFiles/kleeSupport.dir/PrintVersion.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/lib/libkleeSupport.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/lib/libkleeSupport.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/get_sign/loop1.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/examples/get_sign/loop1.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/expression.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-last" beforeDir="false" afterPath="$PROJECT_DIR$/mydebug/klee-last" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-0/assembly.ll" beforeDir="false" afterPath="$PROJECT_DIR$/mydebug/klee-out-0/assembly.ll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-0/run.istats" beforeDir="false" afterPath="$PROJECT_DIR$/mydebug/klee-out-0/run.istats" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-0/test000001.kquery" beforeDir="false" afterPath="$PROJECT_DIR$/mydebug/klee-out-0/test000001.kquery" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-0/test000001.ktest" beforeDir="false" afterPath="$PROJECT_DIR$/mydebug/klee-out-0/test000001.ktest" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-0/test000002.kquery" beforeDir="false" afterPath="$PROJECT_DIR$/mydebug/klee-out-0/test000002.kquery" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-0/test000002.ktest" beforeDir="false" afterPath="$PROJECT_DIR$/mydebug/klee-out-0/test000002.ktest" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-0/test000003.kquery" beforeDir="false" afterPath="$PROJECT_DIR$/mydebug/klee-out-0/test000003.kquery" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-0/test000003.ktest" beforeDir="false" afterPath="$PROJECT_DIR$/mydebug/klee-out-0/test000003.ktest" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-0/warnings.txt" beforeDir="false" afterPath="$PROJECT_DIR$/mydebug/klee-out-0/warnings.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-1/all-queries.kquery" beforeDir="false" afterPath="$PROJECT_DIR$/mydebug/klee-out-0/all-queries.kquery" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-1/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-1/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-1/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-1/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-1/run.stats" beforeDir="false" afterPath="$PROJECT_DIR$/mydebug/klee-out-0/run.stats" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-1/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-1/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-1/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-1/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-1/test000003.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-1/test000003.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-1/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-10/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-10/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-10/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-10/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-10/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-10/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-10/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-10/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-10/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-10/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-10/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-11/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-11/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-11/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-11/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-11/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-11/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-11/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-11/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-11/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-11/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-11/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-12/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-12/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-12/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-12/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-12/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-12/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-12/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-12/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-12/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-12/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-12/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-13/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-13/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-13/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-13/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-13/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-13/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-13/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-13/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-13/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-13/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-13/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-14/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-14/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-14/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-14/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-14/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-14/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-14/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-14/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-14/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-14/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-14/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-15/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-15/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-15/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-15/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-15/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-15/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-15/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-15/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-15/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-15/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-15/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-16/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-16/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-16/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-16/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-16/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-16/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-16/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-16/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-16/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-16/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-16/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-17/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-17/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-17/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-17/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-17/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-17/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-17/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-17/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-17/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-17/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-17/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-18/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-18/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-18/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-18/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-18/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-18/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-18/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-18/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-18/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-18/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-18/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-19/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-19/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-19/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-19/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-19/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-19/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-19/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-19/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-19/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-19/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-19/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-2/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-2/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-2/info" beforeDir="false" afterPath="$PROJECT_DIR$/mydebug/klee-out-0/info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-2/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-2/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-2/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-2/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-2/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-2/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-2/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-2/test000003.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-2/test000003.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-2/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-20/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-20/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-20/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-20/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-20/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-20/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-20/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-20/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-20/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-20/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-20/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-21/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-21/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-21/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-21/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-21/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-21/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-21/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-21/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-21/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-21/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-21/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-22/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-22/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-22/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-22/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-22/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-22/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-22/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-22/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-22/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-22/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-22/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-23/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-23/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-23/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-23/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-23/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-23/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-23/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-23/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-23/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-23/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-23/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-24/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-24/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-24/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-24/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-24/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-24/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-24/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-24/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-24/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-24/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-24/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-25/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-25/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-25/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-25/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-25/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-25/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-25/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-25/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-25/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-25/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-25/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-3/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-3/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-3/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-3/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-3/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-3/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-3/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-3/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-3/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-3/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-3/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-4/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-4/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-4/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-4/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-4/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-4/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-4/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-4/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-4/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-5/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-5/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-5/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-5/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-5/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-5/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-5/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-5/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-5/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-5/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-5/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-6/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-6/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-6/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-6/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-6/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-6/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-6/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-6/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-6/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-6/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-6/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-7/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-7/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-7/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-7/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-7/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-7/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-7/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-7/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-7/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-8/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-8/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-8/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-8/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-8/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-8/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-8/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-8/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-8/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-8/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-8/warnings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-9/all-queries.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-9/assembly.ll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-9/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-9/messages.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-9/run.istats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-9/run.stats" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-9/test000001.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-9/test000001.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-9/test000002.kquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-9/test000002.ktest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydebug/klee-out-9/warnings.txt" beforeDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,55 +359,56 @@
           <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.29" value="1" />
           <entry key="project.open.time.3" value="3" />
+          <entry key="project.open.time.46" value="1" />
           <entry key="project.open.time.49" value="1" />
           <entry key="project.open.time.54" value="1" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.72" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="13" />
+          <entry key="project.opened" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="Makefile" value="1" />
-          <entry key="bc" value="29" />
-          <entry key="c" value="9" />
-          <entry key="cpp" value="37" />
+          <entry key="bc" value="34" />
+          <entry key="c" value="11" />
+          <entry key="cpp" value="44" />
           <entry key="gitignore" value="2" />
           <entry key="h" value="60" />
           <entry key="info" value="2" />
           <entry key="istats" value="2" />
           <entry key="klee (disassembly)" value="26" />
           <entry key="kquery" value="2" />
-          <entry key="ll" value="1" />
+          <entry key="ll" value="2" />
           <entry key="ostream" value="1" />
           <entry key="stats" value="2" />
-          <entry key="txt" value="27" />
+          <entry key="txt" value="32" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CMakeLists.txt" value="4" />
           <entry key="Disassembly" value="26" />
-          <entry key="LLVM file" value="1" />
-          <entry key="ObjectiveC" value="107" />
-          <entry key="PLAIN_TEXT" value="63" />
+          <entry key="LLVM file" value="2" />
+          <entry key="ObjectiveC" value="116" />
+          <entry key="PLAIN_TEXT" value="73" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="c" value="329" />
-          <entry key="cpp" value="808" />
+          <entry key="c" value="358" />
+          <entry key="cpp" value="819" />
           <entry key="gitignore" value="52" />
           <entry key="h" value="380" />
-          <entry key="txt" value="30" />
+          <entry key="txt" value="151" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CMakeLists.txt" value="1" />
-          <entry key="ObjectiveC" value="1517" />
-          <entry key="PLAIN_TEXT" value="81" />
+          <entry key="ObjectiveC" value="1557" />
+          <entry key="PLAIN_TEXT" value="202" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -116,21 +420,21 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mydebug/ignore_function_test.bc">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="32" column="6" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/mydebug/loop1_2.bc">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>toStr</find>
       <find>Method</find>
       <find>printRead</find>
       <find>Kinf</find>
@@ -160,6 +464,7 @@
       <find>seedMap</find>
       <find>statsTracker</find>
       <find>legalFunctions</find>
+      <find>sin</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -188,6 +493,9 @@
         <option value="$PROJECT_DIR$/include/klee/Constraints.h" />
         <option value="$PROJECT_DIR$/lib/Core/Executor.cpp" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/examples/get_sign/loop1.cpp" />
+        <option value="$PROJECT_DIR$/examples/get_sign/sin_test.c" />
+        <option value="$PROJECT_DIR$/examples/get_sign/ignore_function_test.c" />
       </list>
     </option>
   </component>
@@ -277,6 +585,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -284,11 +593,15 @@
               <item name="KLEE" type="b2602c69:ProjectViewProjectNode" />
               <item name="klee-float" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="KLEE" type="b2602c69:ProjectViewProjectNode" />
+              <item name="klee-float" type="462c0819:PsiDirectoryNode" />
+              <item name="mydebug" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -302,15 +615,15 @@
     <property name="vcs.patch.path" value="$USER_HOME$/Desktop" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/mydebug" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/mydebug" />
       <recent name="$PROJECT_DIR$/examples/get_sign" />
+      <recent name="$PROJECT_DIR$/mydebug" />
       <recent name="$PROJECT_DIR$/include/klee/util" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/include" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mydebug" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -371,7 +684,7 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="klee" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-solver-backend=z3 --use-query-log=all:kquery -write-kqueries loop1.bc" WORKING_DIR="file://$PROJECT_DIR$/mydebug" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KLEE" TARGET_NAME="klee" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KLEE" RUN_TARGET_NAME="klee">
+    <configuration name="klee" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-solver-backend=z3 --use-query-log=all:kquery -write-kqueries ignore_function_test.bc" WORKING_DIR="file://$PROJECT_DIR$/mydebug" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KLEE" TARGET_NAME="klee" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KLEE" RUN_TARGET_NAME="klee">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -442,6 +755,7 @@
       <workItem from="1545218219907" duration="10014000" />
       <workItem from="1545528610369" duration="13539000" />
       <workItem from="1545547026686" duration="1046000" />
+      <workItem from="1545913730098" duration="1503000" />
     </task>
     <task id="LOCAL-00001" summary="[develop] modify .gitignore">
       <created>1545548101410</created>
@@ -454,7 +768,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52000000" />
+    <option name="totallyTimeSpent" value="53503000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -467,20 +781,21 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16030957" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16196793" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3368201" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3294979" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.42573223" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3870293" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3294979" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.4843096" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.5041841" />
+      <window_info active="true" anchor="bottom" id="Messages" order="8" visible="true" weight="0.4843096" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.5156904" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.39539748" />
       <window_info anchor="bottom" id="CMake" order="12" weight="0.4832636" />
@@ -556,7 +871,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="[develop] modify .gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="[develop] modify .gitignore" />
+    <MESSAGE value="[develop] &#10;test abnormal example, and the result is wrong&#10;add sin\cos\log function test, which need to ignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="[develop] &#10;test abnormal example, and the result is wrong&#10;add sin\cos\log function test, which need to ignore" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -567,59 +883,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/klee-float-env/llvm-3.4.2.src/build/include/llvm/ADT/APFloat.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="190" column="9" selection-start-line="190" selection-start-column="2" selection-end-line="190" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Solver/IndependentSolver.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="545" column="4" selection-start-line="545" selection-start-column="4" selection-end-line="545" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mydebug/klee-out-12/run.stats">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="126" lean-forward="true" selection-start-line="2" selection-start-column="126" selection-end-line="2" selection-end-column="126" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mydebug/klee-out-12/run.istats">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4428" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mydebug/loop1.bc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="23" column="35" lean-forward="true" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mydebug/klee-out-12/messages.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mydebug/klee-out-12/info">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/klee_expression.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Solver/QueryLoggingSolver.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="226" column="64" selection-start-line="226" selection-start-column="64" selection-end-line="226" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/klee-float-env/llvm-3.4.2.src/build/include/llvm/Support/Casting.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
@@ -690,13 +953,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mydebug/get_sign3.bc">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/get_sign/get_sign3.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/get_sign/get_sign.c">
       <provider selected="true" editor-type-id="text-editor">
@@ -845,24 +1101,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Core/Executor.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="1843" column="19" selection-start-line="1843" selection-start-column="19" selection-end-line="1843" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/Expr/ExprPPrinter.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
           <caret line="311" column="65" lean-forward="true" selection-start-line="311" selection-start-column="65" selection-end-line="311" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mydebug/expression.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -876,9 +1118,79 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="576">
-          <caret line="32" column="6" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loop1.bc">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mydebug/expression-loop1.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mydebug/expression-loop1_2.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/get_sign/loop1_2.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/get_sign/loop1.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="19" lean-forward="true" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/get_sign/get_sign3.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="12" column="25" lean-forward="true" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mydebug/expression.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/get_sign/ignore_function_test.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="14" column="41" lean-forward="true" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Core/Executor.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="3024" column="87" selection-start-line="3024" selection-start-column="87" selection-end-line="3024" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mydebug/ignore_function_test.bc">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mydebug/klee-out-0/assembly.ll">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="21" column="51" lean-forward="true" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mydebug/loop1_2.bc">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

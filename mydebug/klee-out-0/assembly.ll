@@ -1,4 +1,4 @@
-; ModuleID = 'get_sign2.bc'
+; ModuleID = 'ignore_function_test.bc'
 target datalayout = "e-p:64:64:64-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:128:128-a0:0:64-s0:64:64-f80:128:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
 
@@ -42,38 +42,56 @@ entry:
   call void @klee_make_symbolic(i8* %0, i64 4, i8* getelementptr inbounds ([2 x i8]* @.str, i32 0, i32 0)), !dbg !244
   store float 0.000000e+00, float* %res, align 4, !dbg !245
   %1 = load float* %x.addr, align 4, !dbg !246
-  %cmp = fcmp olt float %1, 1.000000e+01, !dbg !246
+  %conv = fpext float %1 to double, !dbg !246
+  %cmp = fcmp olt double %conv, 1.250000e+01, !dbg !246
   %2 = load float* %x.addr, align 4, !dbg !248
+  %conv2 = fpext float %2 to double, !dbg !248
   br i1 %cmp, label %if.then, label %if.else, !dbg !246
 
 if.then:                                          ; preds = %entry
-  %add = fadd float %2, 1.000000e+01, !dbg !248
-  store float %add, float* %res, align 4, !dbg !248
-  br label %if.end6, !dbg !248
+  %call = call double @sin(double %conv2) #9, !dbg !248
+  %add = fadd double %call, 1.060000e+01, !dbg !248
+  %conv3 = fptrunc double %add to float, !dbg !248
+  store float %conv3, float* %res, align 4, !dbg !248
+  br label %if.end17, !dbg !248
 
 if.else:                                          ; preds = %entry
-  %cmp1 = fcmp olt float %2, 2.000000e+01, !dbg !249
+  %cmp5 = fcmp olt double %conv2, 2.050000e+01, !dbg !249
   %3 = load float* %x.addr, align 4, !dbg !251
-  br i1 %cmp1, label %if.then2, label %if.else4, !dbg !249
+  %conv8 = fpext float %3 to double, !dbg !251
+  br i1 %cmp5, label %if.then7, label %if.else12, !dbg !249
 
-if.then2:                                         ; preds = %if.else
-  %add3 = fadd float %3, 2.000000e+01, !dbg !251
-  store float %add3, float* %res, align 4, !dbg !251
-  br label %if.end6, !dbg !251
+if.then7:                                         ; preds = %if.else
+  %call9 = call double @cos(double %conv8) #9, !dbg !251
+  %add10 = fadd double %call9, 2.080000e+01, !dbg !251
+  %conv11 = fptrunc double %add10 to float, !dbg !251
+  store float %conv11, float* %res, align 4, !dbg !251
+  br label %if.end17, !dbg !251
 
-if.else4:                                         ; preds = %if.else
-  %add5 = fadd float %3, 5.000000e+01, !dbg !252
-  store float %add5, float* %res, align 4, !dbg !252
-  br label %if.end6
+if.else12:                                        ; preds = %if.else
+  %call14 = call double @log(double %conv8) #9, !dbg !252
+  %add15 = fadd double %call14, 5.025000e+01, !dbg !252
+  %conv16 = fptrunc double %add15 to float, !dbg !252
+  store float %conv16, float* %res, align 4, !dbg !252
+  br label %if.end17
 
-if.end6:                                          ; preds = %if.then2, %if.else4, %if.then
+if.end17:                                         ; preds = %if.then7, %if.else12, %if.then
   %4 = load float* %res, align 4, !dbg !253
-  %call = call float @klee_output(i8* getelementptr inbounds ([4 x i8]* @.str1, i32 0, i32 0), float %4), !dbg !253
+  %call18 = call float @klee_output(i8* getelementptr inbounds ([4 x i8]* @.str1, i32 0, i32 0), float %4), !dbg !253
   %5 = load float* %res, align 4, !dbg !254
   ret float %5, !dbg !254
 }
 
 declare void @klee_make_symbolic(i8*, i64, i8*) #2
+
+; Function Attrs: nounwind
+declare double @sin(double) #3
+
+; Function Attrs: nounwind
+declare double @cos(double) #3
+
+; Function Attrs: nounwind
+declare double @log(double) #3
 
 ; Function Attrs: nounwind uwtable
 define i32 @main() #0 {
@@ -86,16 +104,16 @@ entry:
   ret i32 0, !dbg !256
 }
 
-declare zeroext i1 @klee_is_infinite_float(float) #3
+declare zeroext i1 @klee_is_infinite_float(float) #4
 
-declare zeroext i1 @klee_is_infinite_double(double) #3
+declare zeroext i1 @klee_is_infinite_double(double) #4
 
-declare zeroext i1 @klee_is_infinite_long_double(x86_fp80) #3
+declare zeroext i1 @klee_is_infinite_long_double(x86_fp80) #4
 
 ; Function Attrs: noinline nounwind optnone uwtable
-define i32 @klee_internal_isinff(float %f) #4 {
+define i32 @klee_internal_isinff(float %f) #5 {
 entry:
-  %isinf = tail call zeroext i1 @klee_is_infinite_float(float %f) #8
+  %isinf = tail call zeroext i1 @klee_is_infinite_float(float %f) #10
   %cmp = fcmp ogt float %f, 0.000000e+00
   %posOrNeg = select i1 %cmp, i32 1, i32 -1
   %result = select i1 %isinf, i32 %posOrNeg, i32 0
@@ -103,9 +121,9 @@ entry:
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
-define i32 @klee_internal_isinf(double %d) #4 {
+define i32 @klee_internal_isinf(double %d) #5 {
 entry:
-  %isinf = tail call zeroext i1 @klee_is_infinite_double(double %d) #8
+  %isinf = tail call zeroext i1 @klee_is_infinite_double(double %d) #10
   %cmp = fcmp ogt double %d, 0.000000e+00
   %posOrNeg = select i1 %cmp, i32 1, i32 -1
   %result = select i1 %isinf, i32 %posOrNeg, i32 0
@@ -113,9 +131,9 @@ entry:
 }
 
 ; Function Attrs: noinline optnone
-define i32 @klee_internal_isinfl(x86_fp80 %d) #5 {
+define i32 @klee_internal_isinfl(x86_fp80 %d) #6 {
 entry:
-  %isinf = tail call zeroext i1 @klee_is_infinite_long_double(x86_fp80 %d) #8
+  %isinf = tail call zeroext i1 @klee_is_infinite_long_double(x86_fp80 %d) #10
   %cmp = fcmp ogt x86_fp80 %d, 0xK00000000000000000000
   %posOrNeg = select i1 %cmp, i32 1, i32 -1
   %result = select i1 %isinf, i32 %posOrNeg, i32 0
@@ -123,39 +141,39 @@ entry:
 }
 
 ; Function Attrs: nounwind uwtable
-define double @klee_internal_fabs(double %d) #6 {
+define double @klee_internal_fabs(double %d) #7 {
 entry:
-  %call = tail call double @klee_abs_double(double %d) #8, !dbg !257
+  %call = tail call double @klee_abs_double(double %d) #10, !dbg !257
   ret double %call, !dbg !257
 }
 
-declare double @klee_abs_double(double) #3
+declare double @klee_abs_double(double) #4
 
 ; Function Attrs: nounwind uwtable
-define float @klee_internal_fabsf(float %f) #6 {
+define float @klee_internal_fabsf(float %f) #7 {
 entry:
-  %call = tail call float @klee_abs_float(float %f) #8, !dbg !258
+  %call = tail call float @klee_abs_float(float %f) #10, !dbg !258
   ret float %call, !dbg !258
 }
 
-declare float @klee_abs_float(float) #3
+declare float @klee_abs_float(float) #4
 
 ; Function Attrs: nounwind uwtable
-define x86_fp80 @klee_internal_fabsl(x86_fp80 %f) #6 {
+define x86_fp80 @klee_internal_fabsl(x86_fp80 %f) #7 {
 entry:
-  %call = tail call x86_fp80 @klee_abs_long_double(x86_fp80 %f) #8, !dbg !259
+  %call = tail call x86_fp80 @klee_abs_long_double(x86_fp80 %f) #10, !dbg !259
   ret x86_fp80 %call, !dbg !259
 }
 
-declare x86_fp80 @klee_abs_long_double(x86_fp80) #3
+declare x86_fp80 @klee_abs_long_double(x86_fp80) #4
 
 ; Function Attrs: nounwind readnone
 declare void @llvm.dbg.value(metadata, i64, metadata) #1
 
 ; Function Attrs: nounwind uwtable
-define i32 @klee_internal_fegetround() #6 {
+define i32 @klee_internal_fegetround() #7 {
 entry:
-  %call = tail call i32 (...)* @klee_get_rounding_mode() #8, !dbg !260
+  %call = tail call i32 (...)* @klee_get_rounding_mode() #10, !dbg !260
   %0 = icmp ult i32 %call, 5, !dbg !261
   br i1 %0, label %switch.lookup, label %return, !dbg !261
 
@@ -169,10 +187,10 @@ return:                                           ; preds = %entry
   ret i32 -1, !dbg !262
 }
 
-declare i32 @klee_get_rounding_mode(...) #3
+declare i32 @klee_get_rounding_mode(...) #4
 
 ; Function Attrs: nounwind uwtable
-define i32 @klee_internal_fesetround(i32 %rm) #6 {
+define i32 @klee_internal_fesetround(i32 %rm) #7 {
 entry:
   switch i32 %rm, label %return [
     i32 0, label %sw.bb
@@ -182,19 +200,19 @@ entry:
   ], !dbg !263
 
 sw.bb:                                            ; preds = %entry
-  tail call void @klee_set_rounding_mode(i32 0) #8, !dbg !264
+  tail call void @klee_set_rounding_mode(i32 0) #10, !dbg !264
   br label %return, !dbg !266
 
 sw.bb1:                                           ; preds = %entry
-  tail call void @klee_set_rounding_mode(i32 2) #8, !dbg !267
+  tail call void @klee_set_rounding_mode(i32 2) #10, !dbg !267
   br label %return, !dbg !268
 
 sw.bb2:                                           ; preds = %entry
-  tail call void @klee_set_rounding_mode(i32 3) #8, !dbg !269
+  tail call void @klee_set_rounding_mode(i32 3) #10, !dbg !269
   br label %return, !dbg !270
 
 sw.bb3:                                           ; preds = %entry
-  tail call void @klee_set_rounding_mode(i32 4) #8, !dbg !271
+  tail call void @klee_set_rounding_mode(i32 4) #10, !dbg !271
   br label %return, !dbg !272
 
 return:                                           ; preds = %sw.bb3, %sw.bb2, %sw.bb1, %sw.bb, %entry
@@ -203,43 +221,43 @@ return:                                           ; preds = %sw.bb3, %sw.bb2, %s
 }
 
 ; Function Attrs: nounwind uwtable
-define i32 @klee_internal_isnanf(float %f) #6 {
+define i32 @klee_internal_isnanf(float %f) #7 {
 entry:
-  %call = tail call zeroext i1 @klee_is_nan_float(float %f) #8, !dbg !274
+  %call = tail call zeroext i1 @klee_is_nan_float(float %f) #10, !dbg !274
   %conv = zext i1 %call to i32, !dbg !274
   ret i32 %conv, !dbg !274
 }
 
-declare zeroext i1 @klee_is_nan_float(float) #3
+declare zeroext i1 @klee_is_nan_float(float) #4
 
 ; Function Attrs: nounwind uwtable
-define i32 @klee_internal_isnan(double %d) #6 {
+define i32 @klee_internal_isnan(double %d) #7 {
 entry:
-  %call = tail call zeroext i1 @klee_is_nan_double(double %d) #8, !dbg !275
+  %call = tail call zeroext i1 @klee_is_nan_double(double %d) #10, !dbg !275
   %conv = zext i1 %call to i32, !dbg !275
   ret i32 %conv, !dbg !275
 }
 
-declare zeroext i1 @klee_is_nan_double(double) #3
+declare zeroext i1 @klee_is_nan_double(double) #4
 
 ; Function Attrs: nounwind uwtable
-define i32 @klee_internal_isnanl(x86_fp80 %d) #6 {
+define i32 @klee_internal_isnanl(x86_fp80 %d) #7 {
 entry:
-  %call = tail call zeroext i1 @klee_is_nan_long_double(x86_fp80 %d) #8, !dbg !276
+  %call = tail call zeroext i1 @klee_is_nan_long_double(x86_fp80 %d) #10, !dbg !276
   %conv = zext i1 %call to i32, !dbg !276
   ret i32 %conv, !dbg !276
 }
 
-declare zeroext i1 @klee_is_nan_long_double(x86_fp80) #3
+declare zeroext i1 @klee_is_nan_long_double(x86_fp80) #4
 
 ; Function Attrs: nounwind uwtable
-define i32 @klee_internal_fpclassifyf(float %f) #6 {
+define i32 @klee_internal_fpclassifyf(float %f) #7 {
 entry:
-  %call = tail call zeroext i1 @klee_is_nan_float(float %f) #8, !dbg !277
+  %call = tail call zeroext i1 @klee_is_nan_float(float %f) #10, !dbg !277
   br i1 %call, label %return, label %if.else, !dbg !277
 
 if.else:                                          ; preds = %entry
-  %call1 = tail call zeroext i1 @klee_is_infinite_float(float %f) #8, !dbg !279
+  %call1 = tail call zeroext i1 @klee_is_infinite_float(float %f) #10, !dbg !279
   br i1 %call1, label %return, label %if.else3, !dbg !279
 
 if.else3:                                         ; preds = %if.else
@@ -247,7 +265,7 @@ if.else3:                                         ; preds = %if.else
   br i1 %cmp, label %return, label %if.else5, !dbg !281
 
 if.else5:                                         ; preds = %if.else3
-  %call6 = tail call zeroext i1 @klee_is_normal_float(float %f) #8, !dbg !283
+  %call6 = tail call zeroext i1 @klee_is_normal_float(float %f) #10, !dbg !283
   %. = select i1 %call6, i32 4, i32 3, !dbg !285
   br label %return, !dbg !285
 
@@ -256,16 +274,16 @@ return:                                           ; preds = %if.else5, %if.else3
   ret i32 %retval.0, !dbg !287
 }
 
-declare zeroext i1 @klee_is_normal_float(float) #3
+declare zeroext i1 @klee_is_normal_float(float) #4
 
 ; Function Attrs: nounwind uwtable
-define i32 @klee_internal_fpclassify(double %f) #6 {
+define i32 @klee_internal_fpclassify(double %f) #7 {
 entry:
-  %call = tail call zeroext i1 @klee_is_nan_double(double %f) #8, !dbg !288
+  %call = tail call zeroext i1 @klee_is_nan_double(double %f) #10, !dbg !288
   br i1 %call, label %return, label %if.else, !dbg !288
 
 if.else:                                          ; preds = %entry
-  %call1 = tail call zeroext i1 @klee_is_infinite_double(double %f) #8, !dbg !290
+  %call1 = tail call zeroext i1 @klee_is_infinite_double(double %f) #10, !dbg !290
   br i1 %call1, label %return, label %if.else3, !dbg !290
 
 if.else3:                                         ; preds = %if.else
@@ -273,7 +291,7 @@ if.else3:                                         ; preds = %if.else
   br i1 %cmp, label %return, label %if.else5, !dbg !292
 
 if.else5:                                         ; preds = %if.else3
-  %call6 = tail call zeroext i1 @klee_is_normal_double(double %f) #8, !dbg !294
+  %call6 = tail call zeroext i1 @klee_is_normal_double(double %f) #10, !dbg !294
   %. = select i1 %call6, i32 4, i32 3, !dbg !296
   br label %return, !dbg !296
 
@@ -282,16 +300,16 @@ return:                                           ; preds = %if.else5, %if.else3
   ret i32 %retval.0, !dbg !298
 }
 
-declare zeroext i1 @klee_is_normal_double(double) #3
+declare zeroext i1 @klee_is_normal_double(double) #4
 
 ; Function Attrs: nounwind uwtable
-define i32 @klee_internal_fpclassifyl(x86_fp80 %ld) #6 {
+define i32 @klee_internal_fpclassifyl(x86_fp80 %ld) #7 {
 entry:
-  %call = tail call zeroext i1 @klee_is_nan_long_double(x86_fp80 %ld) #8, !dbg !299
+  %call = tail call zeroext i1 @klee_is_nan_long_double(x86_fp80 %ld) #10, !dbg !299
   br i1 %call, label %return, label %if.else, !dbg !299
 
 if.else:                                          ; preds = %entry
-  %call1 = tail call zeroext i1 @klee_is_infinite_long_double(x86_fp80 %ld) #8, !dbg !301
+  %call1 = tail call zeroext i1 @klee_is_infinite_long_double(x86_fp80 %ld) #10, !dbg !301
   br i1 %call1, label %return, label %if.else3, !dbg !301
 
 if.else3:                                         ; preds = %if.else
@@ -299,7 +317,7 @@ if.else3:                                         ; preds = %if.else
   br i1 %cmp, label %return, label %if.else5, !dbg !303
 
 if.else5:                                         ; preds = %if.else3
-  %call6 = tail call zeroext i1 @klee_is_normal_long_double(x86_fp80 %ld) #8, !dbg !305
+  %call6 = tail call zeroext i1 @klee_is_normal_long_double(x86_fp80 %ld) #10, !dbg !305
   %. = select i1 %call6, i32 4, i32 3, !dbg !307
   br label %return, !dbg !307
 
@@ -308,15 +326,15 @@ return:                                           ; preds = %if.else5, %if.else3
   ret i32 %retval.0, !dbg !309
 }
 
-declare zeroext i1 @klee_is_normal_long_double(x86_fp80) #3
+declare zeroext i1 @klee_is_normal_long_double(x86_fp80) #4
 
 ; Function Attrs: nounwind uwtable
-define i32 @klee_internal_finitef(float %f) #6 {
+define i32 @klee_internal_finitef(float %f) #7 {
 entry:
-  %call = tail call zeroext i1 @klee_is_nan_float(float %f) #8, !dbg !310
+  %call = tail call zeroext i1 @klee_is_nan_float(float %f) #10, !dbg !310
   %0 = zext i1 %call to i32, !dbg !310
   %lnot.ext = xor i32 %0, 1, !dbg !310
-  %call1 = tail call zeroext i1 @klee_is_infinite_float(float %f) #8, !dbg !310
+  %call1 = tail call zeroext i1 @klee_is_infinite_float(float %f) #10, !dbg !310
   %1 = zext i1 %call1 to i32, !dbg !310
   %lnot.ext3 = xor i32 %1, 1, !dbg !310
   %and = and i32 %lnot.ext3, %lnot.ext, !dbg !310
@@ -324,12 +342,12 @@ entry:
 }
 
 ; Function Attrs: nounwind uwtable
-define i32 @klee_internal_finite(double %f) #6 {
+define i32 @klee_internal_finite(double %f) #7 {
 entry:
-  %call = tail call zeroext i1 @klee_is_nan_double(double %f) #8, !dbg !311
+  %call = tail call zeroext i1 @klee_is_nan_double(double %f) #10, !dbg !311
   %0 = zext i1 %call to i32, !dbg !311
   %lnot.ext = xor i32 %0, 1, !dbg !311
-  %call1 = tail call zeroext i1 @klee_is_infinite_double(double %f) #8, !dbg !311
+  %call1 = tail call zeroext i1 @klee_is_infinite_double(double %f) #10, !dbg !311
   %1 = zext i1 %call1 to i32, !dbg !311
   %lnot.ext3 = xor i32 %1, 1, !dbg !311
   %and = and i32 %lnot.ext3, %lnot.ext, !dbg !311
@@ -337,12 +355,12 @@ entry:
 }
 
 ; Function Attrs: nounwind uwtable
-define i32 @klee_internal_finitel(x86_fp80 %f) #6 {
+define i32 @klee_internal_finitel(x86_fp80 %f) #7 {
 entry:
-  %call = tail call zeroext i1 @klee_is_nan_long_double(x86_fp80 %f) #8, !dbg !312
+  %call = tail call zeroext i1 @klee_is_nan_long_double(x86_fp80 %f) #10, !dbg !312
   %0 = zext i1 %call to i32, !dbg !312
   %lnot.ext = xor i32 %0, 1, !dbg !312
-  %call1 = tail call zeroext i1 @klee_is_infinite_long_double(x86_fp80 %f) #8, !dbg !312
+  %call1 = tail call zeroext i1 @klee_is_infinite_long_double(x86_fp80 %f) #10, !dbg !312
   %1 = zext i1 %call1 to i32, !dbg !312
   %lnot.ext3 = xor i32 %1, 1, !dbg !312
   %and = and i32 %lnot.ext3, %lnot.ext, !dbg !312
@@ -350,13 +368,13 @@ entry:
 }
 
 ; Function Attrs: nounwind uwtable
-define void @klee_div_zero_check(i64 %z) #6 {
+define void @klee_div_zero_check(i64 %z) #7 {
 entry:
   %cmp = icmp eq i64 %z, 0, !dbg !313
   br i1 %cmp, label %if.then, label %if.end, !dbg !313
 
 if.then:                                          ; preds = %entry
-  tail call void @klee_report_error(i8* getelementptr inbounds ([65 x i8]* @.str2, i64 0, i64 0), i32 14, i8* getelementptr inbounds ([15 x i8]* @.str13, i64 0, i64 0), i8* getelementptr inbounds ([8 x i8]* @.str24, i64 0, i64 0)) #9, !dbg !315
+  tail call void @klee_report_error(i8* getelementptr inbounds ([65 x i8]* @.str2, i64 0, i64 0), i32 14, i8* getelementptr inbounds ([15 x i8]* @.str13, i64 0, i64 0), i8* getelementptr inbounds ([8 x i8]* @.str24, i64 0, i64 0)) #11, !dbg !315
   unreachable, !dbg !315
 
 if.end:                                           ; preds = %entry
@@ -364,26 +382,26 @@ if.end:                                           ; preds = %entry
 }
 
 ; Function Attrs: noreturn
-declare void @klee_report_error(i8*, i32, i8*, i8*) #7
+declare void @klee_report_error(i8*, i32, i8*, i8*) #8
 
 ; Function Attrs: nounwind uwtable
-define i32 @klee_int(i8* %name) #6 {
+define i32 @klee_int(i8* %name) #7 {
 entry:
   %x = alloca i32, align 4
   %0 = bitcast i32* %x to i8*, !dbg !317
-  call void @klee_make_symbolic(i8* %0, i64 4, i8* %name) #8, !dbg !317
+  call void @klee_make_symbolic(i8* %0, i64 4, i8* %name) #10, !dbg !317
   %1 = load i32* %x, align 4, !dbg !318, !tbaa !319
   ret i32 %1, !dbg !318
 }
 
 ; Function Attrs: nounwind uwtable
-define void @klee_overshift_check(i64 %bitWidth, i64 %shift) #6 {
+define void @klee_overshift_check(i64 %bitWidth, i64 %shift) #7 {
 entry:
   %cmp = icmp ult i64 %shift, %bitWidth, !dbg !323
   br i1 %cmp, label %if.end, label %if.then, !dbg !323
 
 if.then:                                          ; preds = %entry
-  tail call void @klee_report_error(i8* getelementptr inbounds ([8 x i8]* @.str3, i64 0, i64 0), i32 0, i8* getelementptr inbounds ([16 x i8]* @.str14, i64 0, i64 0), i8* getelementptr inbounds ([14 x i8]* @.str25, i64 0, i64 0)) #9, !dbg !325
+  tail call void @klee_report_error(i8* getelementptr inbounds ([8 x i8]* @.str3, i64 0, i64 0), i32 0, i8* getelementptr inbounds ([16 x i8]* @.str14, i64 0, i64 0), i8* getelementptr inbounds ([14 x i8]* @.str25, i64 0, i64 0)) #11, !dbg !325
   unreachable, !dbg !325
 
 if.end:                                           ; preds = %entry
@@ -391,14 +409,14 @@ if.end:                                           ; preds = %entry
 }
 
 ; Function Attrs: nounwind uwtable
-define i32 @klee_range(i32 %start, i32 %end, i8* %name) #6 {
+define i32 @klee_range(i32 %start, i32 %end, i8* %name) #7 {
 entry:
   %x = alloca i32, align 4
   %cmp = icmp slt i32 %start, %end, !dbg !328
   br i1 %cmp, label %if.end, label %if.then, !dbg !328
 
 if.then:                                          ; preds = %entry
-  call void @klee_report_error(i8* getelementptr inbounds ([56 x i8]* @.str6, i64 0, i64 0), i32 17, i8* getelementptr inbounds ([14 x i8]* @.str17, i64 0, i64 0), i8* getelementptr inbounds ([5 x i8]* @.str28, i64 0, i64 0)) #9, !dbg !330
+  call void @klee_report_error(i8* getelementptr inbounds ([56 x i8]* @.str6, i64 0, i64 0), i32 17, i8* getelementptr inbounds ([14 x i8]* @.str17, i64 0, i64 0), i8* getelementptr inbounds ([5 x i8]* @.str28, i64 0, i64 0)) #11, !dbg !330
   unreachable, !dbg !330
 
 if.end:                                           ; preds = %entry
@@ -408,7 +426,7 @@ if.end:                                           ; preds = %entry
 
 if.else:                                          ; preds = %if.end
   %0 = bitcast i32* %x to i8*, !dbg !333
-  call void @klee_make_symbolic(i8* %0, i64 4, i8* %name) #8, !dbg !333
+  call void @klee_make_symbolic(i8* %0, i64 4, i8* %name) #10, !dbg !333
   %cmp3 = icmp eq i32 %start, 0, !dbg !335
   %1 = load i32* %x, align 4, !dbg !337, !tbaa !319
   br i1 %cmp3, label %if.then4, label %if.else7, !dbg !335
@@ -416,17 +434,17 @@ if.else:                                          ; preds = %if.end
 if.then4:                                         ; preds = %if.else
   %cmp5 = icmp ult i32 %1, %end, !dbg !337
   %conv6 = zext i1 %cmp5 to i64, !dbg !337
-  call void @klee_assume(i64 %conv6) #8, !dbg !337
+  call void @klee_assume(i64 %conv6) #10, !dbg !337
   br label %if.end14, !dbg !339
 
 if.else7:                                         ; preds = %if.else
   %cmp8 = icmp sge i32 %1, %start, !dbg !340
   %conv10 = zext i1 %cmp8 to i64, !dbg !340
-  call void @klee_assume(i64 %conv10) #8, !dbg !340
+  call void @klee_assume(i64 %conv10) #10, !dbg !340
   %2 = load i32* %x, align 4, !dbg !342, !tbaa !319
   %cmp11 = icmp slt i32 %2, %end, !dbg !342
   %conv13 = zext i1 %cmp11 to i64, !dbg !342
-  call void @klee_assume(i64 %conv13) #8, !dbg !342
+  call void @klee_assume(i64 %conv13) #10, !dbg !342
   br label %if.end14
 
 if.end14:                                         ; preds = %if.else7, %if.then4
@@ -438,10 +456,10 @@ return:                                           ; preds = %if.end14, %if.end
   ret i32 %retval.0, !dbg !344
 }
 
-declare void @klee_assume(i64) #3
+declare void @klee_assume(i64) #4
 
 ; Function Attrs: nounwind uwtable
-define void @klee_set_rounding_mode(i32 %rm) #6 {
+define void @klee_set_rounding_mode(i32 %rm) #7 {
 entry:
   switch i32 %rm, label %sw.default [
     i32 0, label %sw.bb
@@ -452,37 +470,37 @@ entry:
   ], !dbg !345
 
 sw.bb:                                            ; preds = %entry
-  tail call void @klee_set_rounding_mode_internal(i32 0) #8, !dbg !346
+  tail call void @klee_set_rounding_mode_internal(i32 0) #10, !dbg !346
   br label %sw.epilog, !dbg !346
 
 sw.bb1:                                           ; preds = %entry
-  tail call void @klee_set_rounding_mode_internal(i32 1) #8, !dbg !348
+  tail call void @klee_set_rounding_mode_internal(i32 1) #10, !dbg !348
   br label %sw.epilog, !dbg !348
 
 sw.bb2:                                           ; preds = %entry
-  tail call void @klee_set_rounding_mode_internal(i32 2) #8, !dbg !349
+  tail call void @klee_set_rounding_mode_internal(i32 2) #10, !dbg !349
   br label %sw.epilog, !dbg !349
 
 sw.bb3:                                           ; preds = %entry
-  tail call void @klee_set_rounding_mode_internal(i32 3) #8, !dbg !350
+  tail call void @klee_set_rounding_mode_internal(i32 3) #10, !dbg !350
   br label %sw.epilog, !dbg !350
 
 sw.bb4:                                           ; preds = %entry
-  tail call void @klee_set_rounding_mode_internal(i32 4) #8, !dbg !351
+  tail call void @klee_set_rounding_mode_internal(i32 4) #10, !dbg !351
   br label %sw.epilog, !dbg !351
 
 sw.default:                                       ; preds = %entry
-  tail call void @klee_report_error(i8* getelementptr inbounds ([68 x i8]* @.str9, i64 0, i64 0), i32 31, i8* getelementptr inbounds ([22 x i8]* @.str110, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8]* @.str211, i64 0, i64 0)) #9, !dbg !352
+  tail call void @klee_report_error(i8* getelementptr inbounds ([68 x i8]* @.str9, i64 0, i64 0), i32 31, i8* getelementptr inbounds ([22 x i8]* @.str110, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8]* @.str211, i64 0, i64 0)) #11, !dbg !352
   unreachable, !dbg !352
 
 sw.epilog:                                        ; preds = %sw.bb4, %sw.bb3, %sw.bb2, %sw.bb1, %sw.bb
   ret void, !dbg !353
 }
 
-declare void @klee_set_rounding_mode_internal(i32) #3
+declare void @klee_set_rounding_mode_internal(i32) #4
 
 ; Function Attrs: nounwind uwtable
-define weak i8* @memcpy(i8* %destaddr, i8* %srcaddr, i64 %len) #6 {
+define weak i8* @memcpy(i8* %destaddr, i8* %srcaddr, i64 %len) #7 {
 entry:
   %cmp3 = icmp eq i64 %len, 0, !dbg !354
   br i1 %cmp3, label %while.end, label %while.body.preheader, !dbg !354
@@ -549,7 +567,7 @@ while.end:                                        ; preds = %while.body, %middle
 }
 
 ; Function Attrs: nounwind uwtable
-define weak i8* @memmove(i8* %dst, i8* %src, i64 %count) #6 {
+define weak i8* @memmove(i8* %dst, i8* %src, i64 %count) #7 {
 entry:
   %cmp = icmp eq i8* %src, %dst, !dbg !362
   br i1 %cmp, label %return, label %if.end, !dbg !362
@@ -698,7 +716,7 @@ return:                                           ; preds = %while.body9, %middl
 }
 
 ; Function Attrs: nounwind uwtable
-define weak i8* @mempcpy(i8* %destaddr, i8* %srcaddr, i64 %len) #6 {
+define weak i8* @mempcpy(i8* %destaddr, i8* %srcaddr, i64 %len) #7 {
 entry:
   %cmp3 = icmp eq i64 %len, 0, !dbg !377
   br i1 %cmp3, label %while.end, label %while.body.preheader, !dbg !377
@@ -770,7 +788,7 @@ while.end:                                        ; preds = %while.cond.while.en
 }
 
 ; Function Attrs: nounwind uwtable
-define weak i8* @memset(i8* %dst, i32 %s, i64 %count) #6 {
+define weak i8* @memset(i8* %dst, i32 %s, i64 %count) #7 {
 entry:
   %cmp2 = icmp eq i64 %count, 0, !dbg !382
   br i1 %cmp2, label %while.end, label %while.body.lr.ph, !dbg !382
@@ -793,63 +811,65 @@ while.end:                                        ; preds = %while.body, %entry
 }
 
 ; Function Attrs: nounwind uwtable
-define double @klee_internal_sqrt(double %d) #6 {
+define double @klee_internal_sqrt(double %d) #7 {
 entry:
-  %call = tail call double @klee_sqrt_double(double %d) #8, !dbg !385
+  %call = tail call double @klee_sqrt_double(double %d) #10, !dbg !385
   ret double %call, !dbg !385
 }
 
-declare double @klee_sqrt_double(double) #3
+declare double @klee_sqrt_double(double) #4
 
 ; Function Attrs: nounwind uwtable
-define float @klee_internal_sqrtf(float %f) #6 {
+define float @klee_internal_sqrtf(float %f) #7 {
 entry:
-  %call = tail call float @klee_sqrt_float(float %f) #8, !dbg !386
+  %call = tail call float @klee_sqrt_float(float %f) #10, !dbg !386
   ret float %call, !dbg !386
 }
 
-declare float @klee_sqrt_float(float) #3
+declare float @klee_sqrt_float(float) #4
 
 ; Function Attrs: nounwind uwtable
-define x86_fp80 @klee_internal_sqrtl(x86_fp80 %f) #6 {
+define x86_fp80 @klee_internal_sqrtl(x86_fp80 %f) #7 {
 entry:
-  %call = tail call x86_fp80 @klee_sqrt_long_double(x86_fp80 %f) #8, !dbg !387
+  %call = tail call x86_fp80 @klee_sqrt_long_double(x86_fp80 %f) #10, !dbg !387
   ret x86_fp80 %call, !dbg !387
 }
 
-declare x86_fp80 @klee_sqrt_long_double(x86_fp80) #3
+declare x86_fp80 @klee_sqrt_long_double(x86_fp80) #4
 
 attributes #0 = { nounwind uwtable "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float
 attributes #1 = { nounwind readnone }
 attributes #2 = { "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
-attributes #3 = { "less-precise-fpmad"="false" "no-frame-pointer-elim"="false" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
-attributes #4 = { noinline nounwind optnone uwtable "less-precise-fpmad"="false" "no-frame-pointer-elim"="false" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
-attributes #5 = { noinline optnone }
-attributes #6 = { nounwind uwtable "less-precise-fpmad"="false" "no-frame-pointer-elim"="false" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
-attributes #7 = { noreturn "less-precise-fpmad"="false" "no-frame-pointer-elim"="false" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
-attributes #8 = { nobuiltin nounwind }
-attributes #9 = { nobuiltin noreturn nounwind }
+attributes #3 = { nounwind "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false
+attributes #4 = { "less-precise-fpmad"="false" "no-frame-pointer-elim"="false" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #5 = { noinline nounwind optnone uwtable "less-precise-fpmad"="false" "no-frame-pointer-elim"="false" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #6 = { noinline optnone }
+attributes #7 = { nounwind uwtable "less-precise-fpmad"="false" "no-frame-pointer-elim"="false" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #8 = { noreturn "less-precise-fpmad"="false" "no-frame-pointer-elim"="false" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #9 = { nounwind }
+attributes #10 = { nobuiltin nounwind }
+attributes #11 = { nobuiltin noreturn nounwind }
 
 !llvm.dbg.cu = !{!0, !19, !38, !67, !112, !122, !132, !143, !155, !165, !184, !198, !212, !227}
 !llvm.module.flags = !{!240, !241}
 !llvm.ident = !{!242, !242, !242, !242, !242, !242, !242, !242, !242, !242, !242, !242, !242, !242}
 
 !0 = metadata !{i32 786449, metadata !1, i32 12, metadata !"clang version 3.4.2 (tags/RELEASE_34/dot2-final)", i1 false, metadata !"", i32 0, metadata !2, metadata !2, metadata !3, metadata !2, metadata !2, metadata !""} ; [ DW_TAG_compile_unit ] [/home/
-!1 = metadata !{metadata !"examples/get_sign/get_sign2.c", metadata !"/home/unix-lc/klee-float"}
+!1 = metadata !{metadata !"../examples/get_sign/ignore_function_test.c", metadata !"/home/unix-lc/klee-float/mydebug"}
 !2 = metadata !{i32 0}
 !3 = metadata !{metadata !4, metadata !12, metadata !15}
-!4 = metadata !{i32 786478, metadata !1, metadata !5, metadata !"klee_output", metadata !"klee_output", metadata !"", i32 7, metadata !6, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, float (i8*, float)* @klee_output, null, null, metadata !2,
-!5 = metadata !{i32 786473, metadata !1}          ; [ DW_TAG_file_type ] [/home/unix-lc/klee-float/examples/get_sign/get_sign2.c]
+!4 = metadata !{i32 786478, metadata !1, metadata !5, metadata !"klee_output", metadata !"klee_output", metadata !"", i32 8, metadata !6, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, float (i8*, float)* @klee_output, null, null, metadata !2,
+!5 = metadata !{i32 786473, metadata !1}          ; [ DW_TAG_file_type ] [/home/unix-lc/klee-float/mydebug/../examples/get_sign/ignore_function_test.c]
 !6 = metadata !{i32 786453, i32 0, null, metadata !"", i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !7, i32 0, null, null, null} ; [ DW_TAG_subroutine_type ] [line 0, size 0, align 0, offset 0] [from ]
 !7 = metadata !{metadata !8, metadata !9, metadata !8}
 !8 = metadata !{i32 786468, null, null, metadata !"float", i32 0, i64 32, i64 32, i64 0, i32 0, i32 4} ; [ DW_TAG_base_type ] [float] [line 0, size 32, align 32, offset 0, enc DW_ATE_float]
 !9 = metadata !{i32 786447, null, null, metadata !"", i32 0, i64 64, i64 64, i64 0, i32 0, metadata !10} ; [ DW_TAG_pointer_type ] [line 0, size 64, align 64, offset 0] [from ]
 !10 = metadata !{i32 786470, null, null, metadata !"", i32 0, i64 0, i64 0, i64 0, i32 0, metadata !11} ; [ DW_TAG_const_type ] [line 0, size 0, align 0, offset 0] [from char]
 !11 = metadata !{i32 786468, null, null, metadata !"char", i32 0, i64 8, i64 8, i64 0, i32 0, i32 6} ; [ DW_TAG_base_type ] [char] [line 0, size 8, align 8, offset 0, enc DW_ATE_signed_char]
-!12 = metadata !{i32 786478, metadata !1, metadata !5, metadata !"get_sign", metadata !"get_sign", metadata !"", i32 13, metadata !13, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, float (float)* @get_sign, null, null, metadata !2, i32 13} ; 
+!12 = metadata !{i32 786478, metadata !1, metadata !5, metadata !"get_sign", metadata !"get_sign", metadata !"", i32 14, metadata !13, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, float (float)* @get_sign, null, null, metadata !2, i32 14} ; 
 !13 = metadata !{i32 786453, i32 0, null, metadata !"", i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !14, i32 0, null, null, null} ; [ DW_TAG_subroutine_type ] [line 0, size 0, align 0, offset 0] [from ]
 !14 = metadata !{metadata !8, metadata !8}
-!15 = metadata !{i32 786478, metadata !1, metadata !5, metadata !"main", metadata !"main", metadata !"", i32 26, metadata !16, i1 false, i1 true, i32 0, i32 0, null, i32 0, i1 false, i32 ()* @main, null, null, metadata !2, i32 26} ; [ DW_TAG_subprogram ]
+!15 = metadata !{i32 786478, metadata !1, metadata !5, metadata !"main", metadata !"main", metadata !"", i32 27, metadata !16, i1 false, i1 true, i32 0, i32 0, null, i32 0, i1 false, i32 ()* @main, null, null, metadata !2, i32 27} ; [ DW_TAG_subprogram ]
 !16 = metadata !{i32 786453, i32 0, null, metadata !"", i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !17, i32 0, null, null, null} ; [ DW_TAG_subroutine_type ] [line 0, size 0, align 0, offset 0] [from ]
 !17 = metadata !{metadata !18}
 !18 = metadata !{i32 786468, null, null, metadata !"int", i32 0, i64 32, i64 32, i64 0, i32 0, i32 5} ; [ DW_TAG_base_type ] [int] [line 0, size 32, align 32, offset 0, enc DW_ATE_signed]
@@ -1077,20 +1097,20 @@ attributes #9 = { nobuiltin noreturn nounwind }
 !240 = metadata !{i32 2, metadata !"Dwarf Version", i32 4}
 !241 = metadata !{i32 1, metadata !"Debug Info Version", i32 1}
 !242 = metadata !{metadata !"clang version 3.4.2 (tags/RELEASE_34/dot2-final)"}
-!243 = metadata !{i32 9, i32 0, metadata !4, null}
-!244 = metadata !{i32 14, i32 0, metadata !12, null}
-!245 = metadata !{i32 15, i32 0, metadata !12, null}
-!246 = metadata !{i32 16, i32 0, metadata !247, null}
-!247 = metadata !{i32 786443, metadata !1, metadata !12, i32 16, i32 0, i32 0} ; [ DW_TAG_lexical_block ] [/home/unix-lc/klee-float/examples/get_sign/get_sign2.c]
-!248 = metadata !{i32 17, i32 0, metadata !247, null}
-!249 = metadata !{i32 18, i32 0, metadata !250, null}
-!250 = metadata !{i32 786443, metadata !1, metadata !247, i32 18, i32 0, i32 1} ; [ DW_TAG_lexical_block ] [/home/unix-lc/klee-float/examples/get_sign/get_sign2.c]
-!251 = metadata !{i32 19, i32 0, metadata !250, null}
-!252 = metadata !{i32 21, i32 0, metadata !250, null}
-!253 = metadata !{i32 22, i32 0, metadata !12, null}
-!254 = metadata !{i32 23, i32 0, metadata !12, null}
-!255 = metadata !{i32 28, i32 0, metadata !15, null}
-!256 = metadata !{i32 29, i32 0, metadata !15, null}
+!243 = metadata !{i32 10, i32 0, metadata !4, null}
+!244 = metadata !{i32 15, i32 0, metadata !12, null}
+!245 = metadata !{i32 16, i32 0, metadata !12, null}
+!246 = metadata !{i32 17, i32 0, metadata !247, null}
+!247 = metadata !{i32 786443, metadata !1, metadata !12, i32 17, i32 0, i32 0} ; [ DW_TAG_lexical_block ] [/home/unix-lc/klee-float/mydebug/../examples/get_sign/ignore_function_test.c]
+!248 = metadata !{i32 18, i32 0, metadata !247, null}
+!249 = metadata !{i32 19, i32 0, metadata !250, null}
+!250 = metadata !{i32 786443, metadata !1, metadata !247, i32 19, i32 0, i32 1} ; [ DW_TAG_lexical_block ] [/home/unix-lc/klee-float/mydebug/../examples/get_sign/ignore_function_test.c]
+!251 = metadata !{i32 20, i32 0, metadata !250, null}
+!252 = metadata !{i32 22, i32 0, metadata !250, null}
+!253 = metadata !{i32 23, i32 0, metadata !12, null}
+!254 = metadata !{i32 24, i32 0, metadata !12, null}
+!255 = metadata !{i32 29, i32 0, metadata !15, null}
+!256 = metadata !{i32 30, i32 0, metadata !15, null}
 !257 = metadata !{i32 12, i32 0, metadata !22, null}
 !258 = metadata !{i32 16, i32 0, metadata !29, null}
 !259 = metadata !{i32 21, i32 0, metadata !32, null}

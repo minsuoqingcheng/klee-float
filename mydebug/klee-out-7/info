@@ -1,3 +1,0 @@
-/home/unix-lc/klee-float/cmake-build-debug/bin/klee -solver-backend=z3 --use-query-log=all:kquery -write-kqueries loop1.bc
-PID: 5656
-Started: 2018-12-22 19:29:32

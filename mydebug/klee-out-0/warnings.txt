@@ -1,0 +1,3 @@
+KLEE: WARNING: undefined reference to function: cos
+KLEE: WARNING: undefined reference to function: log
+KLEE: WARNING: undefined reference to function: sin
