@@ -5,18 +5,20 @@
 void loop1(double degree, double i)
 {
     double res = 0;
+    double powx = 1;
+    double x = 10;
     klee_make_symbolic(&degree, sizeof(degree), "degree");
     klee_make_symbolic(&i, sizeof(i), "i");
-//    klee_make_symbolic(&powx, sizeof(powx), "powx");
+    klee_make_symbolic(&powx, sizeof(powx), "powx");
     klee_make_symbolic(&res, sizeof(res), "res");
-//    klee_make_symbolic(&x, sizeof(x), "x");
+    klee_make_symbolic(&x, sizeof(x), "x");
     if(i < degree)
     {
-//        powx = powx*x;
-//        res = res+powx;
+        powx = powx*x;
+        res = res+powx;
         ++i;
         klee_output("i", i);
-//        klee_output("powx", powx);
+        klee_output("powx", powx);
         klee_output("res", res);
     }
     else

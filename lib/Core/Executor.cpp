@@ -1866,10 +1866,10 @@ void Executor::executeInstruction(ExecutionState &state, KInstruction *ki) {
         if (strstr(funcName, targetName) != NULL) {
             const ConstraintManager myConstraints = state.constraints;
 
-          //  if (std::find(STATE_VECTOR.begin(), STATE_VECTOR.end(), myConstraints) == STATE_VECTOR.end()) {    //first call, has not print contraint
+            if (std::find(STATE_VECTOR.begin(), STATE_VECTOR.end(), myConstraints) == STATE_VECTOR.end()) {    //first call, has not print contraint
                 LLVMExprOstream::saveConstraints("expression.txt", myConstraints);
-                //STATE_VECTOR.push_back(myConstraints);
-          //  }
+                STATE_VECTOR.push_back(myConstraints);
+            }
             // Get the name of the variable needed symbolic expression
             std::string value =
                     specialFunctionHandler->readStringAtAddress(state, arguments[0]);
