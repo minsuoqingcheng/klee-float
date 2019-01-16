@@ -10,9 +10,9 @@ double evaluate(double x, int degree = 15)
     for (int i = 0; i < degree; ++i)
     {
         powx = powx * x;
-        res = res + powx;
-        klee_output("res", res);
+        res = res + powx;   
     }
+    klee_output("res", res);
     return res;
 }
 

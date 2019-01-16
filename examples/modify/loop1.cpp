@@ -7,8 +7,7 @@ void loop1(double degree, double i)
     double res = 0;
     double powx = 1;
     double x = 10;
-    klee_make_symbolic(&degree, sizeof(degree), "degree");
-    klee_make_symbolic(&i, sizeof(i), "i");
+
     klee_make_symbolic(&powx, sizeof(powx), "powx");
     klee_make_symbolic(&res, sizeof(res), "res");
     klee_make_symbolic(&x, sizeof(x), "x");
@@ -19,7 +18,13 @@ void loop1(double degree, double i)
         ++i;
         klee_output("i", i);
         klee_output("powx", powx);
-        klee_output("res", res);
+        if(powx < res - x) { 
+          res = res * 2; 
+          klee_output("res", res);
+        }else{
+          res = res / 2; 
+          klee_output("res", res);
+        }
     }
     else
     {
@@ -33,6 +38,9 @@ int main()
 {
     double degree;
     double i;
+    klee_make_symbolic(&degree, sizeof(degree), "degree");
+    klee_make_symbolic(&i, sizeof(i), "i");
     loop1(degree, i);
+
     return 0;
 }
