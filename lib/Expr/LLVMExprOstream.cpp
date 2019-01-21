@@ -35,8 +35,7 @@ void LLVMExprOstream::saveExpr(std::string name, const char *filePath,
       new llvm::raw_fd_ostream(filePath, s, llvm::sys::fs::F_Append);
   *fileStream << name << " = ";
   ExprPPrinter::printExpr(*fileStream, e);
-  *fileStream << "\n\n---------------------------------------------------------"
-                 "------------------------------\n";
+  *fileStream << "\n";
   fileStream->flush();
 }
 
@@ -45,7 +44,8 @@ void LLVMExprOstream::saveConstraints(const char *filePath,
   std::string s;
   llvm::raw_ostream *fileStream =
       new llvm::raw_fd_ostream(filePath, s, llvm::sys::fs::F_Append);
+  *fileStream << "\n---------------------------------------------------------"
+                 "------------------------------\n";
   ExprPPrinter::printSymbolicConstraints(*fileStream, constraints);
-  *fileStream << "\n";
   fileStream->flush();
 }
