@@ -1,2 +1,0 @@
-/home/unix-lc/klee-float/cmake-build-debug/runtime/runtime_build_Release+Debug+Asserts/klee-libc/strtol.ll: \
-  /home/unix-lc/klee-float/runtime/klee-libc/strtol.c

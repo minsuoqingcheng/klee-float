@@ -1,1 +1,0 @@
-/home/unix-lc/klee-float-env/llvm-3.4.2.src/build/bin/clang  -I/home/unix-lc/klee-float/include -I/home/unix-lc/klee-float/cmake-build-debug/include -emit-llvm -std=gnu89 -D_DEBUG -D_GNU_SOURCE -D__STDC_LIMIT_MACROS -D__STDC_CONSTANT_MACROS -D__NO_INLINE__ -O2 -g -Wall -Wwrite-strings

@@ -1,2 +1,0 @@
-/home/unix-lc/klee-float/cmake-build-debug/runtime/runtime_build_Release+Debug+Asserts/Intrinsic/memcpy.ll: \
-  /home/unix-lc/klee-float/runtime/Intrinsic/memcpy.c
