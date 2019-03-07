@@ -71,6 +71,17 @@ namespace klee {
                            const Array * const* evalArraysBegin = 0,
                            const Array * const* evalArraysEnd = 0,
                            bool printArrayDecls = true);
+
+      /// pirntSymbolicConstraints - Pretty print all constraints as expressions
+      static void printSymbolicConstraints(llvm::raw_ostream &os,
+                                           const ConstraintManager &constraints);
+
+      static void printCons(llvm::raw_ostream &os,
+                            const ConstraintManager &constraints,
+                            const ref<Expr> &q);
+
+      static void printExpr(llvm::raw_ostream &os, const ref<Expr> &e);
+
   };
 
 }

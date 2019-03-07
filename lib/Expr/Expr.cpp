@@ -1193,6 +1193,13 @@ ref<Expr>  NotOptimizedExpr::create(ref<Expr> src) {
   return NotOptimizedExpr::alloc(src);
 }
 
+
+/***/
+
+ref<Expr>  MethodExpr::create(const char *name, std::vector<ref<Expr> > args) {
+    return MethodExpr::alloc(name, args);
+}
+
 /***/
 
 Array::Array(const std::string &_name, uint64_t _size,

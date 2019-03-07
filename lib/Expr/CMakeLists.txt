@@ -22,6 +22,7 @@ klee_add_component(kleaverExpr
   Lexer.cpp
   Parser.cpp
   Updates.cpp
+  LLVMExprOstream.cpp
 )
 
 set(LLVM_COMPONENTS

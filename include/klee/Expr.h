@@ -117,6 +117,7 @@ public:
     /// testing: make equality constraints that KLEE will not use to
     /// optimize to concretes.
     NotOptimized,
+    Method,
 
     //// Skip old varexpr, just for deserialization, purge at some point
     Read = NotOptimized + 2,
@@ -486,6 +487,63 @@ public:
   }
   static bool classof(const NotOptimizedExpr *) { return true; }
 };
+
+
+class MethodExpr : public NonConstantExpr {
+    public:
+        static const Kind kind = Method;
+//  static const unsigned numKids = 1;
+        const char *name;
+        std::vector<ref<Expr> > args;
+
+        static ref<Expr> alloc(const char *name, std::vector<ref<Expr> > &args) {
+            ref<Expr> r(new MethodExpr(name, args));
+            r->computeHash();
+            return r;
+        }
+
+        static ref<Expr> create(const char *name, std::vector<ref<Expr> > args);
+
+        // temp
+        Width getWidth() const {
+            Width w = 0;
+//	  for(unsigned i=0;i<args.size();++i){
+//		  w += args[i]->getWidth();
+//	  }
+            if (args.empty()) {
+                w = Int32;
+//		  w = 0;
+            }
+            else {
+                w = args[0]->getWidth();
+            }
+            return w;
+        }
+        Kind getKind() const { return Method; }
+
+        unsigned getNumKids() const { return args.size(); }
+        ref<Expr> getKid(unsigned i) const { return args[i]; }
+
+        virtual ref<Expr> rebuild(ref<Expr> kids[]) const {
+            std::vector<ref<Expr> > v(kids,kids+args.size());
+            return create(name, v);;
+        }
+
+    private:
+        MethodExpr(const char *_name, std::vector<ref<Expr> > &_args) : name(_name), args(_args) {}
+
+    protected:
+        virtual int compareContents(const Expr &b) const {
+            // No attributes to compare.
+            return 0;
+        }
+
+    public:
+        static bool classof(const Expr *E) {
+            return E->getKind() == Expr::Method;
+        }
+        static bool classof(const MethodExpr *) { return true; }
+    };
 
 
 /// Class representing a byte update of an array.
